@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Mobin Khalid — Lead QA Engineer with 16+ years in software quality assurance, 7+ in Banking/FinTech. Web, mobile & API automation, AI-driven testing, and CI/CD across regulated trading platforms." />
+<title>Mobin Khalid · Lead QA Engineer & Automation Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#07090d; --bg-2:#0b0f15; --surface:#0e1319; --surface-2:#121925;
+    --border:#1b2533; --border-bright:#27384c;
+    --txt:#e9eef4; --muted:#83909f; --faint:#56616f;
+    --up:#00e08a; --cyan:#36c5f0; --amber:#ffb13b; --down:#ff5c66; --violet:#9d7bff;
+    --mono:'JetBrains Mono',monospace; --disp:'Archivo',sans-serif; --body:'Manrope',sans-serif;
+    --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:var(--body);line-height:1.6;overflow-x:hidden;
+    background-image:
+      linear-gradient(rgba(27,37,51,.35) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(27,37,51,.35) 1px,transparent 1px);
+    background-size:46px 46px;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(900px 500px at 80% -5%,rgba(0,224,138,.07),transparent 60%),
+               radial-gradient(800px 500px at 0% 30%,rgba(54,197,240,.06),transparent 55%);}
+  ::selection{background:var(--up);color:#04130c}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:2}
+  .mono{font-family:var(--mono)}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--up)}
+
+  #loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:22px;transition:opacity .6s,visibility .6s}
+  #loader.done{opacity:0;visibility:hidden}
+  .ld-logo{font-family:var(--disp);font-weight:900;font-size:clamp(30px,6.5vw,60px);letter-spacing:-.02em}
+  .ld-logo .c{color:var(--up)}
+  .ld-sub{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--muted);text-transform:uppercase}
+  .ld-bar{width:min(340px,72vw);height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+  .ld-fill{height:100%;width:0;background:linear-gradient(90deg,var(--up),var(--cyan));transition:width .2s}
+  .ld-pct{font-family:var(--mono);font-size:13px;color:var(--up)}
+  .ld-msg{font-family:var(--mono);font-size:11px;color:var(--faint);height:14px}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:900;backdrop-filter:blur(12px);
+    background:rgba(7,9,13,.72);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+  nav.scrolled{border-color:var(--border);background:rgba(7,9,13,.9)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--disp);font-weight:900;font-size:18px;letter-spacing:.02em;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--up);box-shadow:0 0 12px var(--up);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.04em;transition:color .2s;position:relative}
+  .nav-links a:hover{color:var(--txt)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--up);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{font-family:var(--mono);font-size:12.5px;border:1px solid var(--up);color:var(--up);
+    padding:8px 16px;border-radius:6px;transition:all .25s}
+  .nav-cta:hover{background:var(--up);color:#04130c}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:24px;height:2px;background:var(--txt);transition:.3s}
+
+  header{min-height:100vh;display:flex;align-items:center;padding:120px 0 60px;position:relative}
+  .status-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+  .chip{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    border:1px solid var(--border-bright);padding:6px 12px;border-radius:30px;color:var(--muted);
+    display:flex;align-items:center;gap:7px}
+  .chip .live{width:7px;height:7px;border-radius:50%;background:var(--up);box-shadow:0 0 8px var(--up);animation:pulse 1.6s infinite}
+  .chip.cyan{border-color:rgba(54,197,240,.4);color:var(--cyan)}
+  h1.hero{font-family:var(--disp);font-weight:900;font-size:clamp(40px,8vw,86px);line-height:.98;
+    letter-spacing:-.03em;margin:10px 0 8px}
+  h1.hero .grad{background:linear-gradient(105deg,var(--up),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-loc{font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:22px}
+  .hero-desc{max-width:580px;color:var(--muted);font-size:17px;margin-bottom:30px}
+  .hero-desc b{color:var(--txt);font-weight:600}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+  .btn{font-family:var(--mono);font-size:13.5px;padding:13px 22px;border-radius:8px;cursor:pointer;
+    transition:all .25s;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px}
+  .btn-primary{background:var(--up);color:#04130c;font-weight:700}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,224,138,.3)}
+  .btn-ghost{border-color:var(--border-bright);color:var(--txt)}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+  .socials{display:flex;gap:14px}
+  .socials a{width:42px;height:42px;border:1px solid var(--border);border-radius:9px;display:flex;
+    align-items:center;justify-content:center;color:var(--muted);transition:.25s}
+  .socials a:hover{border-color:var(--up);color:var(--up);transform:translateY(-3px)}
+  .socials svg{width:18px;height:18px}
+
+  .ticker{position:absolute;bottom:0;left:0;right:0;border-top:1px solid var(--border);
+    background:rgba(11,15,21,.6);overflow:hidden;white-space:nowrap}
+  .ticker-track{display:inline-block;padding:11px 0;animation:scroll 32s linear infinite;font-family:var(--mono);font-size:12.5px}
+  .ticker-track span{margin:0 28px;color:var(--muted)}
+  .ticker-track span b{color:var(--up);font-weight:700}
+  .ticker-track span.d{color:var(--down)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  section{padding:96px 0;position:relative}
+  .sec-head{margin-bottom:52px}
+  .sec-head h2{font-family:var(--disp);font-weight:800;font-size:clamp(28px,5vw,46px);letter-spacing:-.02em;margin:8px 0}
+  .sec-head p{color:var(--muted);max-width:640px}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}
+  .about-grid p{color:var(--muted);font-size:16.5px;margin-bottom:18px}
+  .about-grid p b{color:var(--txt);font-weight:600}
+  .skill-pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+  .pill{font-family:var(--mono);font-size:12px;padding:7px 13px;border:1px solid var(--border);
+    border-radius:7px;color:var(--muted);transition:.2s;cursor:default}
+  .pill:hover{border-color:var(--up);color:var(--up);transform:translateY(-2px)}
+  .terminal{background:#05070a;border:1px solid var(--border);border-radius:12px;overflow:hidden;font-family:var(--mono);font-size:13px}
+  .term-bar{background:var(--surface);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border)}
+  .term-bar i{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .term-bar .r{background:#ff5f56}.term-bar .y{background:#ffbd2e}.term-bar .g{background:#27c93f}
+  .term-bar span{margin-left:10px;color:var(--faint);font-size:12px}
+  .term-body{padding:18px;line-height:1.85}
+  .term-body .k{color:var(--violet)}.term-body .s{color:var(--up)}.term-body .c{color:var(--faint)}.term-body .n{color:var(--amber)}
+
+  .edu{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+  .edu-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px}
+  .edu-card .yr{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.06em}
+  .edu-card h4{font-size:16px;margin:8px 0 4px}
+  .edu-card p{color:var(--muted);font-size:13px}
+
+  .ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .ach{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;transition:.3s;position:relative;overflow:hidden}
+  .ach::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--up),transparent);transform:scaleX(0);transform-origin:left;transition:.4s}
+  .ach:hover{border-color:var(--border-bright);transform:translateY(-4px)}
+  .ach:hover::before{transform:scaleX(1)}
+  .ach .big{font-family:var(--disp);font-weight:900;font-size:38px;color:var(--up);line-height:1}
+  .ach h3{font-size:15px;margin:10px 0 8px;font-weight:700}
+  .ach p{color:var(--muted);font-size:13.5px}
+  .ach .src{font-family:var(--mono);font-size:11px;color:var(--cyan);margin-top:14px;display:block}
+
+  .exp{display:grid;grid-template-columns:200px 1fr;gap:30px;padding:30px 0;border-top:1px solid var(--border)}
+  .exp .when{font-family:var(--mono);font-size:13px;color:var(--cyan)}
+  .exp .badge{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+    padding:3px 9px;border:1px solid var(--up);color:var(--up);border-radius:20px;text-transform:uppercase}
+  .exp h3{font-family:var(--disp);font-weight:800;font-size:23px}
+  .exp .role{color:var(--muted);font-family:var(--mono);font-size:13px;margin:4px 0 16px}
+  .exp ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .exp li{color:var(--muted);font-size:15px;padding-left:22px;position:relative}
+  .exp li::before{content:"▸";position:absolute;left:0;color:var(--up)}
+  .exp li b{color:var(--txt);font-weight:600}
+  .exp .stk{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+  .exp .stk span{font-family:var(--mono);font-size:11px;padding:5px 10px;background:var(--surface-2);border-radius:6px;color:var(--muted)}
+  .exp-compact{display:grid;grid-template-columns:200px 1fr;gap:30px;padding:20px 0;border-top:1px solid var(--border)}
+  .exp-compact h3{font-family:var(--disp);font-weight:800;font-size:18px}
+  .exp-compact .role{color:var(--muted);font-family:var(--mono);font-size:12px;margin:3px 0 8px}
+  .exp-compact p{color:var(--muted);font-size:14px}
+  .exp-compact p b{color:var(--txt)}
+
+  .lab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .lab-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px;transition:.3s}
+  .lab-card:hover{border-color:var(--border-bright);background:var(--surface-2);transform:translateY(-4px)}
+  .lab-card .ic{font-size:22px;margin-bottom:14px}
+  .lab-card h3{font-size:17px;margin-bottom:9px}
+  .lab-card p{color:var(--muted);font-size:14px;margin-bottom:14px}
+  .lab-card .stk{display:flex;flex-wrap:wrap;gap:7px}
+  .lab-card .stk span{font-family:var(--mono);font-size:10.5px;padding:4px 9px;border:1px solid var(--border);border-radius:5px;color:var(--faint)}
+
+  .sim{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+  .sim-tabs{display:flex;flex-wrap:wrap;gap:2px;background:var(--border);padding:2px;border-bottom:1px solid var(--border)}
+  .sim-tab{flex:1;min-width:110px;background:var(--surface);border:none;color:var(--muted);font-family:var(--mono);
+    font-size:12px;padding:13px 8px;cursor:pointer;transition:.2s;letter-spacing:.03em}
+  .sim-tab.active{background:var(--surface-2);color:var(--up)}
+  .sim-tab span{display:block;font-size:9px;color:var(--faint);margin-top:2px}
+  .sim-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .sim-console{background:#05070a;font-family:var(--mono);font-size:12.5px;padding:18px;min-height:360px;
+    max-height:360px;overflow-y:auto;border-right:1px solid var(--border)}
+  .sim-line{padding:2px 0;opacity:0;animation:fadein .3s forwards}
+  @keyframes fadein{to{opacity:1}}
+  .sim-line.pass{color:var(--up)}.sim-line.fail{color:var(--down)}.sim-line.info{color:var(--muted)}
+  .sim-line.head{color:var(--cyan)}.sim-line.run{color:var(--amber)}
+  .sim-right{padding:22px;display:flex;flex-direction:column}
+  .sim-fname{font-family:var(--mono);font-size:12px;color:var(--faint);margin-bottom:16px}
+  .sim-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:auto}
+  .met{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px}
+  .met .v{font-family:var(--disp);font-weight:900;font-size:26px}
+  .met .l{font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .met.p .v{color:var(--up)}.met.f .v{color:var(--down)}.met.t .v{color:var(--txt)}.met.d .v{color:var(--cyan)}
+  .sim-ctrl{display:flex;gap:10px;margin-top:18px}
+  .sim-ctrl button{flex:1;font-family:var(--mono);font-size:13px;padding:12px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:.2s}
+  .sim-run{background:var(--up);color:#04130c;font-weight:700}
+  .sim-run:hover{box-shadow:0 8px 24px rgba(0,224,138,.3)}
+  .sim-run:disabled{opacity:.5;cursor:not-allowed}
+  .sim-reset{background:transparent;border-color:var(--border-bright);color:var(--muted)}
+  .sim-reset:hover{color:var(--txt);border-color:var(--cyan)}
+
+  .gen{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .gen-input,.gen-output{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column}
+  .gen-input label,.gen-output label{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+  .gen-input textarea{flex:1;min-height:140px;background:#05070a;border:1px solid var(--border);border-radius:10px;
+    color:var(--txt);font-family:var(--body);font-size:15px;padding:14px;resize:vertical;outline:none}
+  .gen-input textarea:focus{border-color:var(--up)}
+  .gen-examples{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  .gen-examples button{font-family:var(--mono);font-size:11px;padding:6px 11px;background:var(--surface-2);
+    border:1px solid var(--border);border-radius:20px;color:var(--muted);cursor:pointer;transition:.2s}
+  .gen-examples button:hover{border-color:var(--up);color:var(--up)}
+  .gen-code{flex:1;background:#05070a;border:1px solid var(--border);border-radius:10px;padding:16px;
+    font-family:var(--mono);font-size:12px;line-height:1.7;overflow:auto;min-height:200px;white-space:pre-wrap;color:var(--muted)}
+  .gen-code .k{color:var(--violet)}.gen-code .s{color:var(--up)}.gen-code .an{color:var(--amber)}.gen-code .c{color:var(--faint)}
+  .gen-foot{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:14px;display:flex;justify-content:space-between}
+
+  .dash{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px}
+  .dash-top{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;margin-bottom:24px;
+    padding-bottom:22px;border-bottom:1px solid var(--border)}
+  .dash-meta{display:flex;gap:28px;flex-wrap:wrap}
+  .dash-meta div .l{font-family:var(--mono);font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em}
+  .dash-meta div .v{font-family:var(--mono);font-size:14px;color:var(--txt);margin-top:2px}
+  .dash-meta div .v.ok{color:var(--up)}
+  .dash-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+  .dc{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:18px}
+  .dc .v{font-family:var(--disp);font-weight:900;font-size:30px}
+  .dc .l{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px}
+  .dc.tot .v{color:var(--txt)}.dc.pas .v{color:var(--up)}.dc.fal .v{color:var(--down)}.dc.pen .v{color:var(--amber)}
+  .dash-charts{display:grid;grid-template-columns:1fr 1.3fr;gap:20px;margin-bottom:24px}
+  .chart-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:18px}
+  .chart-box h4{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+  table.dt{width:100%;border-collapse:collapse;font-size:13px}
+  table.dt th{font-family:var(--mono);font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;
+    text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+  table.dt td{padding:11px 12px;border-bottom:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:12.5px}
+  table.dt td.f{color:var(--txt)}
+  .bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;width:60px;display:inline-block;vertical-align:middle}
+  .bar i{display:block;height:100%;background:var(--up)}
+
+  .contact{text-align:center}
+  .contact h2{font-family:var(--disp);font-weight:900;font-size:clamp(32px,6vw,58px);letter-spacing:-.02em;margin-bottom:18px}
+  .contact .grad{background:linear-gradient(105deg,var(--up),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .contact-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+  .cc{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 30px;transition:.3s;min-width:200px}
+  .cc:hover{border-color:var(--up);transform:translateY(-4px)}
+  .cc .l{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .cc .v{font-size:16px;margin-top:6px;font-weight:600}
+
+  footer{border-top:1px solid var(--border);padding:34px 0;text-align:center}
+  footer p{font-family:var(--mono);font-size:12px;color:var(--faint)}
+  footer b{color:var(--up)}
+
+  @media(max-width:880px){
+    .nav-links{display:none}.burger{display:flex}
+    .nav-links.open{display:flex;position:absolute;top:58px;left:0;right:0;flex-direction:column;gap:18px;
+      background:var(--bg-2);padding:24px;border-bottom:1px solid var(--border)}
+    .about-grid,.gen,.sim-body,.dash-charts,.dash-cards,.edu{grid-template-columns:1fr}
+    .ach-grid,.lab-grid{grid-template-columns:1fr}
+    .exp,.exp-compact{grid-template-columns:1fr}
+    .sim-console{border-right:none;border-bottom:1px solid var(--border);min-height:240px;max-height:240px}
+  }
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="ld-logo">MOBIN<span class="c"> KHALID</span></div>
+  <div class="ld-sub">Lead QA Engineer · Automation Architect</div>
+  <div class="ld-bar"><div class="ld-fill" id="ldFill"></div></div>
+  <div class="ld-pct" id="ldPct">0%</div>
+  <div class="ld-msg" id="ldMsg">Booting test runtime…</div>
+</div>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand"><span class="dot"></span>MOBIN KHALID</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#wins">Impact</a>
+      <a href="#experience">Experience</a>
+      <a href="#lab">Lab</a>
+      <a href="#sim">Live Demo</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="framework-generator.html">Framework Engine ↗</a>
+      <a href="mailto:mobinkhalid@yahoo.com" class="nav-cta">Hire Me</a>
+    </div>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <div class="status-row">
+      <span class="chip"><span class="live"></span>Lead QA · MultiBank Group</span>
+      <span class="chip cyan">Web · Mobile · API · AI-Driven Testing</span>
+    </div>
+    <div class="hero-loc">// Lead QA Engineer · Dubai, United Arab Emirates</div>
+    <h1 class="hero">Engineering <span class="grad">quality</span><br>into FinTech.</h1>
+    <p class="hero-desc">16+ years in software quality assurance, 7+ of them testing <b>Banking, FinTech &amp; AI</b>
+      applications. I architect full-stack automation across <b>web, mobile and API</b> for regulated crypto,
+      CFD, trading and derivatives platforms — and lead the QA teams that ship them.</p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn btn-primary">View Experience →</a>
+      <a href="#sim" class="btn btn-ghost">▶ Run a Live Test</a>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/mobink" title="GitHub" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/mobinkhalid/" title="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18.34V10.5H5.67v7.84h2.67zM7 9.3a1.55 1.55 0 100-3.1 1.55 1.55 0 000 3.1zm11.34 9.04v-4.3c0-2.3-1.23-3.37-2.87-3.37-1.32 0-1.91.73-2.24 1.24v-1.07h-2.67c.04.75 0 7.84 0 7.84h2.67v-4.38c0-.24.02-.48.09-.65.19-.48.62-.97 1.35-.97.96 0 1.34.72 1.34 1.78v4.22h2.66z"/></svg>
+      </a>
+      <a href="mailto:mobinkhalid@yahoo.com" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// who_i_am</span>
+      <h2>QA, treated like engineering.</h2>
+      <p>Every test is a product. Every framework is infrastructure. Every defect caught on a regulated trading platform is real money — and real trust — protected.</p>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm a <b>Lead QA Engineer</b> with over <b>16 years</b> in software quality assurance and <b>7+ years</b>
+          dedicated to Banking, FinTech and AI applications — including extensive functional testing on
+          <b>Crypto, CFD, Trading and Derivatives</b>.</p>
+        <p>My hands-on automation spans web (Selenium WebDriver, <b>WebdriverIO</b>, TestNG/JUnit, <b>Cucumber BDD</b>
+          with Java / JavaScript / Python), API (<b>Postman, RestAssured, GraphQL / Apollo Studio</b>) and mobile
+          (Appium Studio, TestFlight, Android Studio, XCode). I have a proven track record of leading QA teams,
+          defining test strategy, and integrating automation into <b>CI/CD pipelines</b> in Agile environments.</p>
+        <p>Lately I work at the front edge of QA — <b>AI &amp; GenAI testing</b> with GitHub Copilot and Claude Code,
+          generative test generation, prompt-based automation and AI locator optimization. Domains: Banking/FinTech,
+          Logistics Finance, Shipping, Healthcare and Entertainment.</p>
+        <div class="skill-pills">
+          <span class="pill">WebdriverIO</span><span class="pill">Selenium</span><span class="pill">Cucumber BDD</span>
+          <span class="pill">TestNG</span><span class="pill">JUnit</span><span class="pill">Playwright</span>
+          <span class="pill">Java</span><span class="pill">JavaScript / TS</span><span class="pill">Python</span>
+          <span class="pill">RestAssured</span><span class="pill">Postman</span><span class="pill">GraphQL</span>
+          <span class="pill">Appium Studio</span><span class="pill">JMeter</span><span class="pill">Blazemeter</span>
+          <span class="pill">Jenkins</span><span class="pill">Azure DevOps</span><span class="pill">JIRA</span>
+          <span class="pill">AWS</span><span class="pill">GitHub Copilot</span><span class="pill">Claude Code</span>
+        </div>
+      </div>
+      <div class="reveal terminal">
+        <div class="term-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>~/mobin · profile.json</span></div>
+        <div class="term-body">
+<span class="c">// lead qa profile</span><br>
+{<br>
+&nbsp;&nbsp;<span class="k">"name"</span>: <span class="s">"Mobin Khalid"</span>,<br>
+&nbsp;&nbsp;<span class="k">"role"</span>: <span class="s">"Lead QA Engineer"</span>,<br>
+&nbsp;&nbsp;<span class="k">"years_qa"</span>: <span class="n">16</span>,<br>
+&nbsp;&nbsp;<span class="k">"years_fintech"</span>: <span class="n">7</span>,<br>
+&nbsp;&nbsp;<span class="k">"surfaces"</span>: [<span class="s">"web"</span>, <span class="s">"ios"</span>, <span class="s">"android"</span>, <span class="s">"api"</span>],<br>
+&nbsp;&nbsp;<span class="k">"domains"</span>: [<span class="s">"crypto"</span>, <span class="s">"cfd"</span>, <span class="s">"derivatives"</span>],<br>
+&nbsp;&nbsp;<span class="k">"cert"</span>: <span class="s">"ISTQB · BCS Foundation"</span>,<br>
+&nbsp;&nbsp;<span class="k">"based"</span>: <span class="s">"Dubai, UAE"</span><br>
+}
+        </div>
+      </div>
+    </div>
+
+    <div class="edu">
+      <div class="edu-card reveal">
+        <div class="yr">2008 — 2010</div>
+        <h4>MS / M.Phil · Total Quality Management</h4>
+        <p>Institute of Quality &amp; Technology Management, University of Punjab — Lahore, Pakistan</p>
+      </div>
+      <div class="edu-card reveal">
+        <div class="yr">2005 — 2007</div>
+        <h4>M.Sc · Information Technology</h4>
+        <p>Punjab University College of Information Technology (PUCIT) — Lahore, Pakistan</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="wins">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// real_impact</span>
+      <h2>Career Impact</h2>
+      <p>Numbers straight from the work — across MultiBank, Emirates Group IT, Vurse and earlier roles.</p>
+    </div>
+    <div class="ach-grid">
+      <div class="ach reveal"><div class="big">16+</div><h3>Years in QA</h3><p>A full career in software quality assurance across FinTech, shipping, logistics, healthcare and entertainment.</p><span class="src">@ Career</span></div>
+      <div class="ach reveal"><div class="big">7+</div><h3>Years in FinTech</h3><p>Direct testing of Banking, crypto, CFD, trading and derivatives platforms under heavy regulation.</p><span class="src">@ FinTech / Banking</span></div>
+      <div class="ach reveal"><div class="big">~40%</div><h3>Automation Coverage Built</h3><p>Built and maintained full-stack automation frameworks at MultiBank, raising coverage across web, mobile and API.</p><span class="src">@ MultiBank Group</span></div>
+      <div class="ach reveal"><div class="big">60%</div><h3>Regression Time Cut</h3><p>Optimized smoke &amp; regression suites to reduce execution time by 50–60%, accelerating release cycles.</p><span class="src">@ MultiBank · Vurse</span></div>
+      <div class="ach reveal"><div class="big">95%+</div><h3>CI/CD Build Stability</h3><p>Integrated automation into CI/CD pipelines with greater than 95% build stability across releases.</p><span class="src">@ MultiBank · Vurse</span></div>
+      <div class="ach reveal"><div class="big">15+</div><h3>Regulated Licenses Served</h3><p>Drove quality gates to ensure compliance with 15+ global financial licenses and security standards.</p><span class="src">@ Crypto / FinTech</span></div>
+      <div class="ach reveal"><div class="big">75%</div><h3>Downtime Reduced</h3><p>Diagnosed RabbitMQ clustering &amp; dead-letter-queue issues, cutting downtime by 75% across microservices.</p><span class="src">@ Roamworks</span></div>
+      <div class="ach reveal"><div class="big">ISTQB</div><h3>BCS Certified Tester</h3><p>BCS — The Chartered Institute of IT, UK · Foundation Level · Certificate No. 00174540.</p><span class="src">@ Certified · 2015</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// career_log</span>
+      <h2>Where I've Delivered</h2>
+    </div>
+
+    <div class="exp reveal">
+      <div>
+        <div class="when">Dec 2025 — Present</div>
+        <span class="badge">Current</span>
+      </div>
+      <div>
+        <h3>MultiBank Group</h3>
+        <div class="role">Lead QA Engineer · Dubai, UAE · Projects: BELT, 4DBMS</div>
+        <ul>
+          <li>Lead QA &amp; automation strategy across <b>web, mobile (iOS &amp; Android) and API</b> for regulated trading platforms (BTC, USDT, equities, commodities, indices).</li>
+          <li>Built and maintained <b>full-stack automation frameworks</b>, increasing coverage to ~40%.</li>
+          <li>Optimized smoke &amp; regression suites, <b>reducing execution time by 50–60%</b>.</li>
+          <li>Own end-to-end STLC — test strategy, risk-based coverage and release readiness — with <b>&gt;95% build stability</b> in CI/CD.</li>
+          <li>Mentor QA engineers and enforce security &amp; regulatory compliance across global FinTech platforms.</li>
+        </ul>
+        <div class="stk"><span>WebdriverIO</span><span>JavaScript</span><span>Cucumber BDD</span><span>JIRA</span><span>PL/SQL</span><span>CI/CD</span></div>
+      </div>
+    </div>
+
+    <div class="exp reveal">
+      <div>
+        <div class="when">Dec 2024 — Dec 2025</div>
+        <span class="badge" style="border-color:var(--cyan);color:var(--cyan)">Vendor · IGT</span>
+      </div>
+      <div>
+        <h3>Emirates Group IT</h3>
+        <div class="role">Lead QA Engineer · Dubai, UAE · Projects: BELT, 4DBMS (MADAR)</div>
+        <ul>
+          <li>Designed and maintained automated test scripts in <b>WebdriverIO + Cucumber BDD (JavaScript)</b> to streamline testing.</li>
+          <li>Defined test requirements with dev teams for comprehensive coverage of critical components.</li>
+          <li>Ran manual execution via <b>QMetry in JIRA</b> and managed test-data activities for sprint releases.</li>
+          <li>Integrated automated testing into CI/CD for faster, more reliable deployments. <b>Led a QA team of 3.</b></li>
+        </ul>
+        <div class="stk"><span>WebdriverIO</span><span>Cucumber BDD</span><span>JavaScript</span><span>QMetry</span><span>JIRA</span><span>PL/SQL</span></div>
+      </div>
+    </div>
+
+    <div class="exp reveal">
+      <div><div class="when">Jul 2023 — Nov 2024</div></div>
+      <div>
+        <h3>Vurse</h3>
+        <div class="role">Senior QA Engineer · Dubai, UAE · Crypto discovery platform (App, CMS, Web3, AI)</div>
+        <ul>
+          <li>Drove automation strategy for crypto platforms across <b>Web, Mobile (iOS/Android) and API</b>.</li>
+          <li>Architected full-stack frameworks for <b>crypto wallets, trade execution, KYC and payment settlements</b>.</li>
+          <li>Optimized regression suites — <b>60% faster execution</b> with &gt;95% CI/CD build stability.</li>
+          <li>Directed STLC and quality gates for compliance with <b>15+ global financial licenses</b> and security standards.</li>
+        </ul>
+        <div class="stk"><span>Selenium</span><span>TestNG / JUnit</span><span>Robot Framework</span><span>AWS</span><span>Firebase</span><span>Loadium</span><span>TestFlight</span></div>
+      </div>
+    </div>
+
+    <div class="exp reveal">
+      <div><div class="when">May 2022 — Jun 2023</div></div>
+      <div>
+        <h3>Infijoy DMCC</h3>
+        <div class="role">QA Lead · Dubai, UAE · Wellness platform with BNPL financing</div>
+        <ul>
+          <li>Owned the full QA lifecycle for <b>wellness financing and Buy-Now-Pay-Later</b> features.</li>
+          <li>Built test strategy for <b>loan origination, credit decisioning, EMI scheduling and NPA monitoring</b>.</li>
+          <li>Developed a <b>Selenium + Cucumber BDD</b> framework in Java for the loan-application portal.</li>
+          <li>Validated interest-calculation engines &amp; repayment schedules; ran <b>GraphQL API testing</b> for loan/customer services.</li>
+        </ul>
+        <div class="stk"><span>Selenium</span><span>Cucumber BDD</span><span>Java</span><span>GraphQL</span><span>Appium Studio</span><span>BrowserStack</span><span>SauceLabs</span></div>
+      </div>
+    </div>
+
+    <div class="exp-compact reveal">
+      <div><div class="when">Sep 2019 — Apr 2022</div></div>
+      <div>
+        <h3>AHOY DMCC — Senior QA Engineer</h3>
+        <div class="role">Dubai, UAE · Logistics &amp; transportation (AMS, Comet, Fly+, AHOY FinTech)</div>
+        <p>Embedded Linux &amp; async Rust testing for stability; Java/Kotlin &amp; mobile communications testing; built a comprehensive test strategy and automated workflows with Robot Framework. Tools: Azure DevOps, JIRA, POSTMAN, Appium Studio, JMeter &amp; Blazemeter.</p>
+      </div>
+    </div>
+
+    <div class="exp-compact reveal">
+      <div><div class="when">Jan 2016 — Mar 2019</div></div>
+      <div>
+        <h3>Roamworks FZ LLC — QA Engineer</h3>
+        <div class="role">Dubai, UAE · M2M / remote asset monitoring (ROAM) · Clients incl. DEWA, Al Ain Municipality</div>
+        <p>Validated RabbitMQ message queues for delivery, ordering &amp; persistence across microservices; resolved clustering &amp; dead-letter-queue issues, <b>cutting downtime 75%</b>; added Grafana monitoring that improved processing speed 30%. Native &amp; hybrid mobile testing on Android &amp; iOS.</p>
+      </div>
+    </div>
+
+    <div class="exp-compact reveal">
+      <div><div class="when">Jan 2013 — Dec 2015</div></div>
+      <div>
+        <h3>CMA Systems FZ LLC — Application Tester</h3>
+        <div class="role">Dubai, UAE · CMA CGM shipping ERP (LARA) · 4,000 → 16,000 concurrent users</div>
+        <p>Functional testing for Accounts Receivable, Invoicing &amp; Credit Management; validated financial data integrity for credit notes, payment terms &amp; aging reports using complex SQL on Oracle RDBMS 11g.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// specializations</span>
+      <h2>The Automation Lab</h2>
+      <p>The areas I go deep on — the stack behind trustworthy, release-gating quality.</p>
+    </div>
+    <div class="lab-grid">
+      <div class="lab-card reveal"><div class="ic">🤖</div><h3>AI &amp; GenAI Testing</h3><p>GitHub Copilot &amp; Claude Code for generative test generation, prompt-based automation and AI locator optimization.</p><div class="stk"><span>Copilot</span><span>Claude Code</span><span>Prompt Automation</span></div></div>
+      <div class="lab-card reveal"><div class="ic">🌐</div><h3>Web Automation</h3><p>WebdriverIO &amp; Selenium with Cucumber BDD across Java, JavaScript/TypeScript and Python.</p><div class="stk"><span>WebdriverIO</span><span>Selenium</span><span>Playwright</span></div></div>
+      <div class="lab-card reveal"><div class="ic">🔌</div><h3>API Test Architecture</h3><p>Contract &amp; functional API testing with Postman, RestAssured and GraphQL via Apollo Studio.</p><div class="stk"><span>RestAssured</span><span>Postman</span><span>GraphQL</span></div></div>
+      <div class="lab-card reveal"><div class="ic">📱</div><h3>Mobile QA</h3><p>Native &amp; hybrid iOS/Android testing with Appium Studio, TestFlight, Android Studio and XCode.</p><div class="stk"><span>Appium Studio</span><span>TestFlight</span><span>XCode</span></div></div>
+      <div class="lab-card reveal"><div class="ic">⚙️</div><h3>CI/CD &amp; Strategy</h3><p>Jenkins, GitHub Actions and Azure DevOps pipelines; risk-based test strategy and release readiness.</p><div class="stk"><span>Jenkins</span><span>GitHub Actions</span><span>Azure DevOps</span></div></div>
+      <div class="lab-card reveal"><div class="ic">📈</div><h3>Performance Testing</h3><p>Load, stress &amp; soak testing with JMeter, Blazemeter and Loadium to surface bottlenecks early.</p><div class="stk"><span>JMeter</span><span>Blazemeter</span><span>Loadium</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="sim">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// interactive</span>
+      <h2>Live Test Execution</h2>
+      <p>Pick a layer, hit Run, watch a simulated suite execute in real time. (Demo only — no live infra is hit.)</p>
+    </div>
+    <div class="sim reveal">
+      <div class="sim-tabs" id="simTabs"></div>
+      <div class="sim-body">
+        <div class="sim-console" id="simConsole"><div class="sim-line info">// select a layer above and click Run Tests</div></div>
+        <div class="sim-right">
+          <div class="sim-fname" id="simFname">trade.regression.spec · idle</div>
+          <div class="sim-metrics">
+            <div class="met t"><div class="v" id="mTotal">0</div><div class="l">Total</div></div>
+            <div class="met p"><div class="v" id="mPass">0</div><div class="l">Passed</div></div>
+            <div class="met f"><div class="v" id="mFail">0</div><div class="l">Failed</div></div>
+            <div class="met d"><div class="v" id="mDur">00:00</div><div class="l">Duration</div></div>
+          </div>
+          <div class="sim-ctrl">
+            <button class="sim-run" id="simRun">▶ Run Tests</button>
+            <button class="sim-reset" id="simReset">↻ Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="generator">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// script_architect</span>
+      <h2>Test Generator Console</h2>
+      <p>Describe a scenario in plain English; the console scaffolds a starter test in my house style. (Pattern-based demo, runs entirely in your browser.)</p>
+    </div>
+    <div class="gen reveal">
+      <div class="gen-input">
+        <label>Scenario / Requirement</label>
+        <textarea id="genIn" placeholder="e.g. Verify a user can place a market buy order and the balance updates">Verify a user can log in and view their trading wallet balance</textarea>
+        <div class="gen-examples">
+          <button data-ex="Verify login with valid credentials returns a session token">API login</button>
+          <button data-ex="Verify placing a market buy order updates the wallet balance">Place order</button>
+          <button data-ex="Verify the KYC document upload completes successfully">Mobile KYC</button>
+        </div>
+        <button class="btn btn-primary" id="genBtn" style="font-family:var(--mono)">⚡ Generate Test</button>
+      </div>
+      <div class="gen-output">
+        <label id="genLabel">generated_test</label>
+        <div class="gen-code" id="genOut"><span class="c">// awaiting requirement…</span></div>
+        <div class="gen-foot"><span id="genStatus">System ready</span><span>Engine · MK-QA pattern v1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dashboard">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">// command_center</span>
+      <h2>Execution Dashboard</h2>
+      <p>A sample run report — the kind of view I wire up so the whole team can triage without CI access.</p>
+    </div>
+    <div class="dash reveal">
+      <div class="dash-top">
+        <div class="dash-meta">
+          <div><div class="l">Build</div><div class="v">#1042</div></div>
+          <div><div class="l">Env</div><div class="v">STAGING</div></div>
+          <div><div class="l">Branch</div><div class="v">main</div></div>
+          <div><div class="l">Status</div><div class="v ok">● PASSING</div></div>
+          <div><div class="l">Duration</div><div class="v">00:12:08</div></div>
+        </div>
+      </div>
+      <div class="dash-cards">
+        <div class="dc tot"><div class="v">305</div><div class="l">Total Tests</div></div>
+        <div class="dc pas"><div class="v">288</div><div class="l">Passed · 94.4%</div></div>
+        <div class="dc fal"><div class="v">12</div><div class="l">Failed · 3.9%</div></div>
+        <div class="dc pen"><div class="v">5</div><div class="l">Pending · 1.6%</div></div>
+      </div>
+      <div class="dash-charts">
+        <div class="chart-box"><h4>Pass / Fail Distribution</h4><canvas id="donut" height="200"></canvas></div>
+        <div class="chart-box"><h4>Suite Execution Time (s)</h4><canvas id="bars" height="200"></canvas></div>
+      </div>
+      <div class="chart-box">
+        <h4>Suite Summary</h4>
+        <table class="dt">
+          <thead><tr><th>Suite</th><th>Duration</th><th>Passed</th><th>Failed</th><th>Pass %</th></tr></thead>
+          <tbody>
+            <tr><td class="f">auth.api.suite</td><td>00:01:44</td><td>52</td><td>1</td><td>98% <span class="bar"><i style="width:98%"></i></span></td></tr>
+            <tr><td class="f">wallet.api.suite</td><td>00:02:31</td><td>74</td><td>3</td><td>96% <span class="bar"><i style="width:96%"></i></span></td></tr>
+            <tr><td class="f">trade.e2e.suite</td><td>00:03:09</td><td>88</td><td>4</td><td>95% <span class="bar"><i style="width:95%"></i></span></td></tr>
+            <tr><td class="f">mobile.regression</td><td>00:04:44</td><td>74</td><td>4</td><td>94% <span class="bar"><i style="width:94%"></i></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="tag reveal">// let's_talk</span>
+    <h2 class="reveal">Let's gate releases with <span class="grad">confidence.</span></h2>
+    <div class="contact-cards">
+      <a class="cc reveal" href="mailto:mobinkhalid@yahoo.com"><div class="l">Email</div><div class="v">mobinkhalid@yahoo.com</div></a>
+      <a class="cc reveal" href="tel:+971563677402"><div class="l">Phone</div><div class="v">+971 56 367 7402</div></a>
+      <a class="cc reveal" href="https://github.com/mobink" target="_blank" rel="noopener"><div class="l">GitHub</div><div class="v">github.com/mobink</div></a>
+      <a class="cc reveal" href="https://www.linkedin.com/in/mobinkhalid/" target="_blank" rel="noopener"><div class="l">LinkedIn</div><div class="v">/in/mobinkhalid</div></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><p>Built with precision by <b>MOBIN KHALID</b> · Lead QA Engineer · Dubai, UAE · © 2026</p></div>
+</footer>
+
+<script>
+(function(){
+  const msgs=["Booting test runtime…","Loading WebdriverIO…","Connecting to staging…","Compiling suites…","Allure ready."];
+  let p=0,i=0;
+  const fill=document.getElementById('ldFill'),pct=document.getElementById('ldPct'),msg=document.getElementById('ldMsg');
+  const t=setInterval(()=>{
+    p+=Math.random()*16+6; if(p>100)p=100;
+    fill.style.width=p+'%'; pct.textContent=Math.floor(p)+'%';
+    msg.textContent=msgs[Math.min(i,msgs.length-1)]; i++;
+    if(p>=100){clearInterval(t);setTimeout(()=>{document.getElementById('loader').classList.add('done')},450);}
+  },230);
+})();
+
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+document.getElementById('burger').onclick=()=>document.getElementById('navLinks').classList.toggle('open');
+document.querySelectorAll('#navLinks a').forEach(a=>a.onclick=()=>document.getElementById('navLinks').classList.remove('open'));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+(function(){
+  const items=[
+    ["AUTH.API","98%",0],["WALLET.API","96%",0],["TRADE.E2E","95%",0],["MOBILE.REG","94%",0],
+    ["REGRESSION","-60%",0],["KYC.FLOW","PASS",0],["BUILD","STABLE 95%",0],["IOS.SMOKE","FAIL",1],
+    ["COVERAGE","~40%",0],["DEPLOY","READY",0]
+  ];
+  const row=items.map(([k,v,d])=>`<span>${k} <b class="${d?'d':''}">${v}</b></span>`).join('');
+  document.getElementById('ticker').innerHTML=row+row;
+})();
+
+const layers={
+  "WebdriverIO":{sub:"WEB · JS",file:"trade.e2e.spec.js",cases:[
+    "should load platform under 2s","should log in with valid credentials","should display wallet balance",
+    "should open trade ticket","should place market buy order","order confirmation toast appears",
+    "balance updates after order","should run KYC document upload","should log out cleanly"]},
+  "RestAssured":{sub:"API · JAVA",file:"orders.api.suite",cases:[
+    "POST /auth returns 200 + token","GET /wallet returns balance","POST /order/buy returns 201",
+    "order schema matches contract","invalid token returns 401","GET /order/{id} returns order",
+    "rate-limit returns 429","negative amount rejected 400"]},
+  "Selenium":{sub:"WEB · JAVA",file:"web.regression.suite",cases:[
+    "homepage loads under 2s","login form validates input","dashboard renders charts",
+    "trade panel opens","order ticket submits","BNPL schedule renders","logout clears session"]},
+  "Appium":{sub:"MOBILE",file:"mobile.regression.spec",cases:[
+    "app launches to login","biometric prompt appears","wallet screen loads","convert screen opens",
+    "deposit flow completes","withdrawal validation works","push notification received"]},
+  "Postman":{sub:"API · COLLECTION",file:"contract.collection",cases:[
+    "health check 200","auth flow valid","wallet contract valid","order contract valid",
+    "GraphQL query valid","error envelope valid"]}
+};
+let activeLayer="WebdriverIO",running=false;
+const tabsEl=document.getElementById('simTabs');
+Object.keys(layers).forEach((k,idx)=>{
+  const b=document.createElement('button');
+  b.className='sim-tab'+(idx===0?' active':'');
+  b.innerHTML=`${k}<span>${layers[k].sub}</span>`;
+  b.onclick=()=>{if(running)return;document.querySelectorAll('.sim-tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');activeLayer=k;resetSim();};
+  tabsEl.appendChild(b);
+});
+const cons=document.getElementById('simConsole'),fname=document.getElementById('simFname');
+const mT=document.getElementById('mTotal'),mP=document.getElementById('mPass'),mF=document.getElementById('mFail'),mD=document.getElementById('mDur');
+function resetSim(){cons.innerHTML='<div class="sim-line info">// ready · '+activeLayer+' selected</div>';fname.textContent=layers[activeLayer].file+' · idle';mT.textContent='0';mP.textContent='0';mF.textContent='0';mD.textContent='00:00';}
+function line(txt,cls){const d=document.createElement('div');d.className='sim-line '+(cls||'');d.textContent=txt;cons.appendChild(d);cons.scrollTop=cons.scrollHeight;}
+document.getElementById('simReset').onclick=()=>{if(!running)resetSim();};
+document.getElementById('simRun').onclick=async()=>{
+  if(running)return;running=true;const btn=document.getElementById('simRun');btn.disabled=true;
+  cons.innerHTML='';const L=layers[activeLayer];fname.textContent=L.file+' · running';
+  line('$ run '+activeLayer.toLowerCase()+' suite','head');
+  line('› spinning up runtime…','info');
+  let pass=0,fail=0,t0=Date.now();
+  for(let i=0;i<L.cases.length;i++){
+    await new Promise(r=>setTimeout(r,360+Math.random()*260));
+    const isFail=Math.random()<0.11 && i>1;
+    if(isFail){fail++;line('✗ FAIL  '+L.cases[i],'fail');}
+    else{pass++;line('✓ pass  '+L.cases[i],'pass');}
+    mT.textContent=i+1;mP.textContent=pass;mF.textContent=fail;
+    const s=Math.floor((Date.now()-t0)/1000);mD.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  }
+  line('','info');
+  line(`› done · ${pass} passed, ${fail} failed`,fail?'run':'pass');
+  fname.textContent=L.file+' · complete';btn.disabled=false;running=false;
+};
+resetSim();
+
+const genIn=document.getElementById('genIn'),genOut=document.getElementById('genOut'),genStatus=document.getElementById('genStatus'),genLabel=document.getElementById('genLabel');
+document.querySelectorAll('.gen-examples button').forEach(b=>b.onclick=()=>{genIn.value=b.dataset.ex;});
+function titleCase(req){
+  return req.toLowerCase().replace(/[^a-z0-9 ]/g,'').split(/\s+/).filter(w=>!['the','a','can','and','to','that','is','their','view','should'].includes(w)).slice(0,5).map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+}
+document.getElementById('genBtn').onclick=async()=>{
+  const req=genIn.value.trim();if(!req){genStatus.textContent='enter a requirement first';return;}
+  genStatus.textContent='architecting…';genOut.innerHTML='<span class="c">// generating…</span>';
+  const isApi=/api|endpoint|token|post |get |contract|status code/i.test(req);
+  await new Promise(r=>setTimeout(r,650));
+  let code;
+  if(isApi){
+    genLabel.textContent='orders.api.test.java';
+    code=`<span class="c">// Auto-scaffolded · RestAssured pattern</span>
+<span class="k">package</span> com.mk.api.tests;
+
+<span class="an">@Test</span>(groups = {<span class="s">"regression"</span>}, description = <span class="s">"${req.replace(/"/g,'\\"')}"</span>)
+<span class="k">public void</span> verifyScenario() {
+    given()
+        .auth().oauth2(token)
+        .contentType(<span class="s">"application/json"</span>)
+    .when()
+        .get(<span class="s">"/v1/wallet/balance"</span>)
+    .then()
+        .statusCode(<span class="an">200</span>)
+        .body(<span class="s">"data.balance"</span>, notNullValue());
+    <span class="c">// TODO: assert business rule for this scenario</span>
+}`;
+  }else{
+    genLabel.textContent='trade.e2e.feature';
+    code=`<span class="c"># Auto-scaffolded · WebdriverIO + Cucumber BDD</span>
+<span class="k">Feature:</span> ${titleCase(req)}
+
+  <span class="k">Scenario:</span> ${req.replace(/"/g,'')}
+    <span class="an">Given</span> the user is logged in to the platform
+    <span class="an">When</span> the user performs the action under test
+    <span class="an">Then</span> the expected outcome is verified
+    <span class="c"># step defs: ./step-definitions/trade.steps.js</span>`;
+  }
+  genOut.innerHTML=code;genStatus.textContent='✓ scaffold ready · '+(isApi?'API (RestAssured)':'Web (WDIO/Cucumber)');
+};
+
+addEventListener('load',()=>{
+  if(typeof Chart==='undefined')return;
+  Chart.defaults.color='#83909f';Chart.defaults.font.family="'JetBrains Mono',monospace";
+  new Chart(document.getElementById('donut'),{type:'doughnut',data:{labels:['Passed','Failed','Pending'],
+    datasets:[{data:[288,12,5],backgroundColor:['#00e08a','#ff5c66','#ffb13b'],borderColor:'#0e1319',borderWidth:3}]},
+    options:{plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:14}}},cutout:'66%'}});
+  new Chart(document.getElementById('bars'),{type:'bar',data:{labels:['auth','wallet','trade','mobile','web'],
+    datasets:[{data:[104,151,189,284,96],backgroundColor:'#36c5f0',borderRadius:5}]},
+    options:{plugins:{legend:{display:false}},scales:{y:{grid:{color:'#1b2533'}},x:{grid:{display:false}}}}});
+});
+</script>
+</body>
+</html>
